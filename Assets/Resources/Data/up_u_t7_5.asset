@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35fbade77364457be2d9762377e9eb9, type: 3}
+  m_Name: up_u_t7_5
+  m_EditorClassIdentifier: 
+  id: u_t7_5
+  tier: 7
+  title: Discount Regulator
+  description: Large discount effect.
+  baseCost: 170000
+  costMultiplier: 1.28
+  maxLevel: 0
+  addPerSlice: 0
+  addCps: 0
+  spawnRateMultiplier: 1
+  offlineWalletIncrease: 0
+  discountPercent: 0.12
+  isHire: 0
+  hireLimit: 0
+  requiredLevelForTierComplete: 0
+  unlocked: 0
