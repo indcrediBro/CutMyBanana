@@ -1,27 +1,54 @@
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
+[RequireComponent(typeof(Button))]
 public class UpgradeUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI titleText;
-    [SerializeField] private TextMeshProUGUI descText;
-    [SerializeField] private TextMeshProUGUI costText;
-    [SerializeField] private TextMeshProUGUI levelText;
-    [SerializeField] private Button buyButton;
+    public TextMeshProUGUI titleText;
+    public TextMeshProUGUI descText;
+    public TextMeshProUGUI costText;
+    public TextMeshProUGUI levelText;
+    public Button buyButton;
 
-    public void Setup(string title, string desc, int cost, int level)
+    private string upgradeId;
+    private UpgradeSO so;
+    private UpgradeManager upgradeManager;
+
+    public void Setup(UpgradeSO up)
     {
-        titleText.text = title;
-        descText.text = desc;
-        costText.text = cost.ToString();
-        levelText.text = level.ToString();
-        buyButton.onClick.AddListener(OnBuyClick);
+        so = up;
+        upgradeId = up.id;
+        titleText.text = up.title;
+        descText.text = up.description;
+        buyButton = buyButton ?? GetComponent<Button>();
+        buyButton.onClick.RemoveAllListeners();
+        buyButton.onClick.AddListener(OnBuyClicked);
+
+        upgradeManager = FindFirstObjectByType<UpgradeManager>();
+        Refresh();
     }
 
-    private void OnBuyClick()
+    public void Refresh()
     {
+        var saved = SaveSystem.Load() ?? new SaveData();
+        var st = saved.upgrades.FirstOrDefault(x => x.id == upgradeId);
+        int lvl = st?.level ?? 0;
+        levelText.text = $"Lv {lvl}";
+        long cost = upgradeManager.CostForNextLevel(upgradeId);
+        costText.text = $"{cost} 🍌";
+        buyButton.interactable = upgradeManager.IsUpgradeUnlocked(upgradeId) && upgradeManager.CanPurchase(upgradeId);
+    }
 
+    private void OnBuyClicked()
+    {
+        if (upgradeManager.Purchase(upgradeId))
+        {
+            Refresh();
+            // notify parent controller to refresh lists
+            var main = FindFirstObjectByType<UIController>();
+            main?.RefreshAll();
+        }
     }
 }

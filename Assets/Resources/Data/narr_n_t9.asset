@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25407423a99340e0aa34e4f284b00432, type: 3}
+  m_Script: {fileID: 0}
   m_Name: narr_n_t9
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::NarrativeSO
   id: n_t9
   title: Space Is A Fruit Bowl
-  body: "A cosmic banana drifts past orbit. Astronauts record as you slice it \u2014
-    applause echoes in vacuum."
+  body: A cosmic banana drifts by. Slicing it makes nearby stars hum.

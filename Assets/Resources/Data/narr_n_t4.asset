@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25407423a99340e0aa34e4f284b00432, type: 3}
+  m_Script: {fileID: 0}
   m_Name: narr_n_t4
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::NarrativeSO
   id: n_t4
   title: Union and Uproar
-  body: Workers ask for better breakrooms. You buy muffins en masse. Productivity
-    rises and so does potassium.
+  body: Workers demand better breakrooms; you give them muffins.

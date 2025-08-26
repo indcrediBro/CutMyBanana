@@ -5,65 +5,63 @@ public class Spawner : MonoBehaviour
 {
     private Collider spawnArea;
 
-    public GameObject[] fruitPrefabs;
-    public GameObject bombPrefab;
-    [Range(0f, 1f)]
-    public float bombChance = 0.05f;
+    public GameObject bananaPrefab;
 
-    public float minSpawnDelay = 0.25f;
-    public float maxSpawnDelay = 1f;
+    [Range(0f,1f)] public float bombChance = 0.02f;
+
+    public float minSpawnDelay = 0.5f;
+    public float maxSpawnDelay = 1.2f;
 
     public float minAngle = -15f;
     public float maxAngle = 15f;
 
-    public float minForce = 18f;
-    public float maxForce = 22f;
+    public float minForce = 12f;
+    public float maxForce = 18f;
 
-    public float maxLifetime = 5f;
+    public float maxLifetime = 6f;
 
-    private void Awake()
+    private void Awake() { spawnArea = GetComponent<Collider>(); }
+
+    private void OnEnable() { StartCoroutine(SpawnRoutine()); }
+
+    private void OnDisable() { StopAllCoroutines(); }
+
+    private IEnumerator SpawnRoutine()
     {
-        spawnArea = GetComponent<Collider>();
-    }
-
-    private void OnEnable()
-    {
-        StartCoroutine(Spawn());
-    }
-
-    private void OnDisable()
-    {
-        StopAllCoroutines();
-    }
-
-    private IEnumerator Spawn()
-    {
-        yield return new WaitForSeconds(2f);
-
+        yield return new WaitForSeconds(1f);
         while (enabled)
         {
-            GameObject prefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
+            GameObject prefab = bananaPrefab;
 
-            if (Random.value < bombChance) {
-                prefab = bombPrefab;
-            }
+            Vector3 pos = new Vector3(
+                Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
+                Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y),
+                Random.Range(spawnArea.bounds.min.z, spawnArea.bounds.max.z)
+            );
 
-            Vector3 position = new Vector3
-            {
-                x = Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
-                y = Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y),
-                z = Random.Range(spawnArea.bounds.min.z, spawnArea.bounds.max.z)
-            };
-
-            Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(minAngle, maxAngle));
-
-            GameObject fruit = Instantiate(prefab, position, rotation);
-            Destroy(fruit, maxLifetime);
+            Quaternion rot = Quaternion.Euler(0,0,Random.Range(minAngle, maxAngle));
+            var go = Instantiate(prefab, pos, rot);
+            Destroy(go, maxLifetime);
 
             float force = Random.Range(minForce, maxForce);
-            fruit.GetComponent<Rigidbody>().AddForce(fruit.transform.up * force, ForceMode.Impulse);
+            var rb = go.GetComponent<Rigidbody>();
+            if (rb) rb.AddForce(go.transform.up * force, ForceMode.Impulse);
 
-            yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
+            // spawn delay can be modified by upgrades
+            var upMgr = FindFirstObjectByType<UpgradeManager>();
+            float spawnMultiplier = 1f;
+            if (upMgr != null)
+            {
+                // compute average spawn multiplier for current tier's purchased upgrades (simple approach)
+                var curTier = FindFirstObjectByType<TierManager>().GetCurrentTier();
+                foreach (var u in upMgr.GetUpgradesForTier(curTier))
+                {
+                    var level = upMgr.GetUpgradeLevel(u.id);
+                    if (level > 0) spawnMultiplier *= Mathf.Pow(u.spawnRateMultiplier, level);
+                }
+            }
+            float delay = Random.Range(minSpawnDelay, maxSpawnDelay) / spawnMultiplier;
+            yield return new WaitForSeconds(delay);
         }
     }
 }

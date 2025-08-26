@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e35fbade77364457be2d9762377e9eb9, type: 3}
+  m_Script: {fileID: 0}
   m_Name: up_u_t1_4
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   id: u_t1_4
   tier: 1
   title: Spawn Boost I
-  description: Slightly faster spawn frequency.
+  description: Faster spawn frequency.
   baseCost: 50
   costMultiplier: 1.18
   maxLevel: 0
@@ -27,4 +27,4 @@ MonoBehaviour:
   isHire: 0
   hireLimit: 0
   requiredLevelForTierComplete: 0
-  unlocked: 0
+  defaultUnlocked: 1

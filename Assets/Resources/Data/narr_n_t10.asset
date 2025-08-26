@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25407423a99340e0aa34e4f284b00432, type: 3}
+  m_Script: {fileID: 0}
   m_Name: narr_n_t10
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::NarrativeSO
   id: n_t10
   title: Becoming the Banana
-  body: "You stop reaching for fruit \u2014 now the fruit reaches for you. You will
-    be missed by at least three civilizations."
+  body: You become metaphorically banana; your inbox fills with gratitude.

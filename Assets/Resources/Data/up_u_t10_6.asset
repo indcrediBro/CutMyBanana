@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e35fbade77364457be2d9762377e9eb9, type: 3}
+  m_Script: {fileID: 0}
   m_Name: up_u_t10_6
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   id: u_t10_6
   tier: 10
   title: Discount Ultimate
-  description: Very large final discount (capped by manager).
+  description: Large final discount (capped).
   baseCost: 4000000
   costMultiplier: 1.35
   maxLevel: 0
@@ -23,8 +23,8 @@ MonoBehaviour:
   addCps: 0
   spawnRateMultiplier: 1
   offlineWalletIncrease: 0
-  discountPercent: 0.25
+  discountPercent: 0
   isHire: 0
   hireLimit: 0
   requiredLevelForTierComplete: 0
-  unlocked: 0
+  defaultUnlocked: 0

@@ -8,7 +8,7 @@ public class SidePanelController : MonoBehaviour
     [SerializeField] private Vector2 hiddenPosition; // Off-screen position
     [SerializeField] private Vector2 shownPosition;  // On-screen position
     [SerializeField] private GameObject invisibleClosePanelButton;
-    [SerializeField] private GameObject tasksPanel, upgradesPanel;
+    [SerializeField] private GameObject tasksPanel, upgradesPanel,achievementsPanel;
     private bool isVisible = false;
     private Tween panelTween;
 
@@ -24,11 +24,19 @@ public class SidePanelController : MonoBehaviour
         {
             tasksPanel.SetActive(true);
             upgradesPanel.SetActive(false);
+            achievementsPanel.SetActive(false);
         }
         else if (index == 1)
         {
             tasksPanel.SetActive(false);
             upgradesPanel.SetActive(true);
+            achievementsPanel.SetActive(false);
+        }
+        else if (index == 2)
+        {
+            achievementsPanel.SetActive(true);
+            tasksPanel.SetActive(false);
+            upgradesPanel.SetActive(false);
         }
         ActivatePanel();
     }

@@ -9,22 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e35fbade77364457be2d9762377e9eb9, type: 3}
+  m_Script: {fileID: 0}
   m_Name: up_u_t2_1
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   id: u_t2_1
   tier: 2
   title: Golden Knife
-  description: +1.0 bananas per slice; better golden yields.
+  description: +1.0 bananas per slice.
   baseCost: 150
   costMultiplier: 1.2
   maxLevel: 0
   addPerSlice: 1
-  addCps: 0.2
+  addCps: 0
   spawnRateMultiplier: 1.06
   offlineWalletIncrease: 0
   discountPercent: 0
   isHire: 0
   hireLimit: 0
   requiredLevelForTierComplete: 1
-  unlocked: 0
+  defaultUnlocked: 0
