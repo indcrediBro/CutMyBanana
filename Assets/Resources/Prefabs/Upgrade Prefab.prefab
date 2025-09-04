@@ -421,6 +421,7 @@ GameObject:
   - component: {fileID: 6368018244986335775}
   - component: {fileID: 2003258821377526486}
   - component: {fileID: 4773455287873967249}
+  - component: {fileID: 8230572778901558310}
   m_Layer: 5
   m_Name: Upgrade Prefab
   m_TagString: Untagged
@@ -540,7 +541,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7127699640210153152}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9e015309143412ba2ca055aa8c51ffe, type: 3}
   m_Name: 
@@ -550,6 +551,22 @@ MonoBehaviour:
   costText: {fileID: 6468939297776418526}
   levelText: {fileID: 82004485304015494}
   buyButton: {fileID: 2003258821377526486}
+--- !u!114 &8230572778901558310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127699640210153152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 197d4f5f491c43db9cb6f181a5975b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopContainer: {fileID: 0}
+  shopItemPrefab: {fileID: 0}
+  text: {fileID: 0}
+  button: {fileID: 0}
 --- !u!1 &7683579349897060859
 GameObject:
   m_ObjectHideFlags: 0

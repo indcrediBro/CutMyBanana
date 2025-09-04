@@ -1,38 +1,40 @@
+using System;
+using Utilities;
 using UnityEngine;
 
 public class Banana : MonoBehaviour
 {
+    public bool shouldDestroy = false;
+    
     public GameObject whole;
     public GameObject sliced;
-    public double points = 1.0;
 
     private Rigidbody fruitRigidbody;
     private Collider fruitCollider;
-    private CMBBootstrap bootstrap;
-
+    
+    private Vector3 originalLocalPositionWhole;
+    private Vector3 originalLocalPositionHalfA;
+    private Vector3 originalLocalPositionHalfB;
+    
+    
     private void Awake()
     {
         fruitRigidbody = GetComponent<Rigidbody>();
         fruitCollider = GetComponent<Collider>();
-        bootstrap = FindFirstObjectByType<CMBBootstrap>();
         if (sliced) sliced.SetActive(false);
+        originalLocalPositionWhole = whole.transform.localPosition;
+        var halves = sliced.GetComponentsInChildren<Rigidbody>();
+        originalLocalPositionHalfA = halves[0].transform.localPosition;
+        originalLocalPositionHalfB = halves[1].transform.localPosition;
+        
+        Invoke(nameof(DisableAfterTime), 6f);
     }
 
-    public void Slice(Vector3 direction, Vector3 position, float force)
+    private void Slice(Vector3 direction, Vector3 position, float force)
     {
-        var save = SaveSystem.Load() ?? new SaveData();
-        double perSliceValue = save.perSlice;
-        // give currency & slice count
-        var gs = FindFirstObjectByType<GameState>();
-        gs.AddCurrency((int)perSliceValue);
-        gs.AddSlice(1);
-
-        // Update tasks: only for active tier & only tasks that mention "Slice" in description OR have specific design
-        int tier = FindFirstObjectByType<TierManager>().GetCurrentTier();
-        var tm = FindFirstObjectByType<TaskManager>();
-        tm.AddProgressForTier(tier,
-            def => def.description.ToLower().Contains("slice") || def.title.ToLower().Contains("slice"), 1);
-
+        
+        CMB.GameEvents.OnSlice.Invoke();
+        CMB.GameEvents.OnCurrencyGained.Invoke();
         // Visual swap
         if (fruitCollider) fruitCollider.enabled = false;
         if (whole) whole.SetActive(false);
@@ -47,8 +49,26 @@ public class Banana : MonoBehaviour
         {
             slice.linearVelocity = fruitRigidbody.linearVelocity;
             slice.AddForceAtPosition(direction * force, position, ForceMode.Impulse);
-            Destroy(gameObject, 3f); // let slices play then cleanup
+            // if(shouldDestroy) Destroy(gameObject, 3f); // let slices play then cleanup
         }
+        Invoke(nameof(DisableAfterTime), 3f);
+    }
+    
+    private void DisableAfterTime()
+    {
+        gameObject.SetActive(false);
+        
+        // Reset state
+        if (fruitCollider) fruitCollider.enabled = true;
+        fruitRigidbody.linearVelocity = Vector3.zero;
+        if (whole) whole.SetActive(true);
+        if (sliced) sliced.SetActive(false);
+        whole.transform.localPosition = originalLocalPositionWhole;
+        var halves = sliced.GetComponentsInChildren<Rigidbody>();
+        halves[0].linearVelocity = Vector3.zero;
+        halves[1].linearVelocity = Vector3.zero;
+        halves[0].transform.localPosition = originalLocalPositionHalfA;
+        halves[1].transform.localPosition = originalLocalPositionHalfB;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,5 +77,15 @@ public class Banana : MonoBehaviour
         var blade = other.GetComponent<Slicer>();
         if (blade == null) return;
         Slice(blade.direction, blade.transform.position, blade.sliceForce);
+    }
+    private bool isReturnedToPool = false;
+
+    private void OnDisable()
+    {
+        if (!isReturnedToPool)
+        {
+            ObjectPooler.ReturnObjectToPool(gameObject);
+            isReturnedToPool = true;
+        }
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Utilities;
 
 public class Spawner : MonoBehaviour
 {
@@ -40,8 +41,8 @@ public class Spawner : MonoBehaviour
             );
 
             Quaternion rot = Quaternion.Euler(0,0,Random.Range(minAngle, maxAngle));
-            var go = Instantiate(prefab, pos, rot);
-            Destroy(go, maxLifetime);
+            var go = ObjectPooler.SpawnObject(prefab, pos, rot);
+            // Destroy(go, maxLifetime);
 
             float force = Random.Range(minForce, maxForce);
             var rb = go.GetComponent<Rigidbody>();
