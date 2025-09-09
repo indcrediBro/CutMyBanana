@@ -17,7 +17,7 @@ public class Banana : MonoBehaviour
     private Vector3 originalLocalPositionHalfB;
     
     
-    private void Awake()
+    private void OnEnable()
     {
         fruitRigidbody = GetComponent<Rigidbody>();
         fruitCollider = GetComponent<Collider>();
@@ -49,7 +49,6 @@ public class Banana : MonoBehaviour
         {
             slice.linearVelocity = fruitRigidbody.linearVelocity;
             slice.AddForceAtPosition(direction * force, position, ForceMode.Impulse);
-            // if(shouldDestroy) Destroy(gameObject, 3f); // let slices play then cleanup
         }
         Invoke(nameof(DisableAfterTime), 3f);
     }
