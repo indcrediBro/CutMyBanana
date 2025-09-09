@@ -1,0 +1,219 @@
+fileFormatVersion: 2
+guid: 9cb4a5a1bc04d7449b0a9c7d14e3bea0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6614941769852451828
+    second: Fruit Slice sprites_0
+  - first:
+      213: -6205845247748207971
+    second: Fruit Slice sprites_1
+  - first:
+      213: 5598644971884369651
+    second: Fruit Slice sprites_2
+  - first:
+      213: -8514742726287077576
+    second: Fruit Slice sprites_3
+  - first:
+      213: 7371498909661660504
+    second: Fruit Slice sprites_4
+  - first:
+      213: -2964884656762353605
+    second: Fruit Slice sprites_5
+  - first:
+      213: 4036970666252364417
+    second: Fruit Slice sprites_6
+  - first:
+      213: 3424217110449987895
+    second: Fruit Slice sprites_7
+  - first:
+      213: -7933399630074421660
+    second: Fruit Slice sprites_8
+  - first:
+      213: 3303671258755009044
+    second: Fruit Slice sprites_9
+  - first:
+      213: -1952195034738569674
+    second: Fruit Slice sprites_10
+  - first:
+      213: -6042343988331419421
+    second: Fruit Slice sprites_11
+  - first:
+      213: 5971158590505734922
+    second: Fruit Slice sprites_12
+  - first:
+      213: 7077045973494179796
+    second: Fruit Slice sprites_13
+  - first:
+      213: 1541538982052405665
+    second: Fruit Slice sprites_14
+  - first:
+      213: 8977989042229975823
+    second: Fruit Slice sprites_15
+  - first:
+      213: -2803648196275525765
+    second: Fruit Slice sprites_16
+  - first:
+      213: -996179211268396903
+    second: Fruit Slice sprites_17
+  - first:
+      213: 799573797059302526
+    second: Fruit Slice sprites_18
+  - first:
+      213: -1761233621236758060
+    second: Fruit Slice sprites_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Banana_Sliced
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 5
+        width: 26
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 998e7bb094cdc22f0800000000000000
+      internalID: -996179211268396903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c2a36b94c07a09248851ec8390af8f85
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Banana_Sliced: -996179211268396903
+      Fruit Slice sprites_0: 6614941769852451828
+      Fruit Slice sprites_1: -6205845247748207971
+      Fruit Slice sprites_10: -1952195034738569674
+      Fruit Slice sprites_11: -6042343988331419421
+      Fruit Slice sprites_12: 5971158590505734922
+      Fruit Slice sprites_13: 7077045973494179796
+      Fruit Slice sprites_14: 1541538982052405665
+      Fruit Slice sprites_15: 8977989042229975823
+      Fruit Slice sprites_16: -2803648196275525765
+      Fruit Slice sprites_18: 799573797059302526
+      Fruit Slice sprites_19: -1761233621236758060
+      Fruit Slice sprites_2: 5598644971884369651
+      Fruit Slice sprites_3: -8514742726287077576
+      Fruit Slice sprites_4: 7371498909661660504
+      Fruit Slice sprites_5: -2964884656762353605
+      Fruit Slice sprites_6: 4036970666252364417
+      Fruit Slice sprites_7: 3424217110449987895
+      Fruit Slice sprites_8: -7933399630074421660
+      Fruit Slice sprites_9: 3303671258755009044
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

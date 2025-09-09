@@ -69,7 +69,23 @@ namespace CMB
             GameEvents.OnUpgradePurchased?.Invoke(upgradeId);
             return true;
         }
+        
+        private void TrySelling(double amount)
+        {
+            PlayerData player = GameManager.Instance.m_playerData;
+            double earnings = amount * player.currentBananaPrice * player.currentEarningMultiplier;
+            player.currentMoney += earnings;
+            GameEvents.OnCurrencyGained?.Invoke();
+        }
 
+        private void TrySelling()
+        {
+            PlayerData player = GameManager.Instance.m_playerData;
+            double earnings = 1 * player.currentBananaPrice * player.currentEarningMultiplier;
+            player.currentMoney += earnings;
+            GameEvents.OnCurrencyGained?.Invoke();
+        }
+        
         private void ApplyUpgrade(PlayerData player, Upgrade upgrade)
         {
             switch (upgrade.id)

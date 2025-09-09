@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shouldDestroy: 0
+  destroyTime: 8
   whole: {fileID: 1339041309961802903}
   sliced: {fileID: 9157073216001905278}
 --- !u!54 &7808687211511555751

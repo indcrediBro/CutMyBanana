@@ -5,7 +5,7 @@ using UnityEngine;
 public class Banana : MonoBehaviour
 {
     public bool shouldDestroy = false;
-    
+    public float destroyTime = 8f;
     public GameObject whole;
     public GameObject sliced;
 
@@ -50,7 +50,7 @@ public class Banana : MonoBehaviour
             slice.linearVelocity = fruitRigidbody.linearVelocity;
             slice.AddForceAtPosition(direction * force, position, ForceMode.Impulse);
         }
-        Invoke(nameof(DisableAfterTime), 3f);
+        Invoke(nameof(DisableAfterTime), destroyTime);
     }
     
     private void DisableAfterTime()

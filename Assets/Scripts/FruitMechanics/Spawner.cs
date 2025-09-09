@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using CMB;
 using Utilities;
 
 public class Spawner : MonoBehaviour
@@ -10,6 +11,8 @@ public class Spawner : MonoBehaviour
 
     [Range(0f,1f)] public float bombChance = 0.02f;
 
+    public float spawnRate;
+    
     public float minSpawnDelay = 0.5f;
     public float maxSpawnDelay = 1.2f;
 
@@ -21,11 +24,21 @@ public class Spawner : MonoBehaviour
 
     public float maxLifetime = 6f;
 
-    private void Awake() { spawnArea = GetComponent<Collider>(); }
+    private void Awake()
+    {
+        spawnArea = GetComponent<Collider>();
+        spawnRate = GameSettings.baseBananaSpawnRate;
+    }
 
-    private void OnEnable() { StartCoroutine(SpawnRoutine()); }
+    private void OnEnable()
+    {
+        StartCoroutine(SpawnRoutine());
+    }
 
-    private void OnDisable() { StopAllCoroutines(); }
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
 
     private IEnumerator SpawnRoutine()
     {
@@ -61,8 +74,8 @@ public class Spawner : MonoBehaviour
                     if (level > 0) spawnMultiplier *= Mathf.Pow(u.spawnRateMultiplier, level);
                 }
             }
-            float delay = Random.Range(minSpawnDelay, maxSpawnDelay) / spawnMultiplier;
-            yield return new WaitForSeconds(delay);
+            // float delay = Random.Range(minSpawnDelay, maxSpawnDelay) / spawnMultiplier;
+            yield return new WaitForSeconds(spawnRate / spawnMultiplier);
         }
     }
 }

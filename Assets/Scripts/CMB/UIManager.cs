@@ -20,6 +20,11 @@ namespace CMB
         public GameObject taskItemPrefab;     // prefab for a single task row
         private Dictionary<GameTask, TaskItemUI> taskUIBindings;
 
+        [Header("Shop UI")]
+        public Transform shopListContainer;
+        public GameObject shopItemPrefab;
+        // private Dictionary<Upgrade, ShopItemUI> shopUIBindings;
+        
         public void _OnAwake()
         {
             taskUIBindings = new Dictionary<GameTask, TaskItemUI>();
