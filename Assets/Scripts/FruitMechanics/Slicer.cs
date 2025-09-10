@@ -35,13 +35,9 @@ public class Slicer : MonoBehaviour
         {
             StopSlice();
         }
-        else if (slicing && !SliceTimerReached())
+        else if (slicing)
         {
             ContinueSlice();
-        }
-        else if (slicing && SliceTimerReached())
-        {
-            StopSlice();
         }
     }
 
@@ -60,6 +56,7 @@ public class Slicer : MonoBehaviour
         {
             sliceTrail.enabled = true;
             sliceTrail.Clear();
+            sliceTrail.gameObject.SetActive((true));
         }
     }
 
@@ -76,13 +73,31 @@ public class Slicer : MonoBehaviour
     private void StopSlice()
     {
         slicing = false;
-        if (sliceCollider) sliceCollider.enabled = false;
-        if (sliceTrail) sliceTrail.enabled = false;
+        if (sliceCollider)
+        {
+            sliceCollider.enabled = false;
+        }
+        
+        if (sliceTrail)
+        {
+            sliceTrail.enabled = false;
+            sliceTrail.Clear();
+            sliceTrail.gameObject.SetActive((false));
+        }
+        
+        
     }
 
     private void ContinueSlice()
     {
         currentSliceTime+= Time.deltaTime;
+        
+        if (SliceTimerReached())
+        {
+            StopSlice();
+            return;
+        }
+        sliceCollider.enabled = true;
         var newPos = GetMouseWorldPosition();
         direction = newPos - transform.position;
         float velocity = direction.magnitude / Time.deltaTime;
