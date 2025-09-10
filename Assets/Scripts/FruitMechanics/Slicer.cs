@@ -5,13 +5,15 @@ public class Slicer : MonoBehaviour
 {
     public float sliceForce = 5f;
     public float minSliceVelocity = 0.01f;
-
+    public float sliceTimeLimit = 0.5f;
+    
     private Camera mainCamera;
     private Collider sliceCollider;
     private TrailRenderer sliceTrail;
 
     public Vector3 direction { get; private set; }
     public bool slicing { get; private set; }
+    private float currentSliceTime = 0f;
 
     private void Awake()
     {
@@ -25,17 +27,50 @@ public class Slicer : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) StartSlice();
-        else if (Input.GetMouseButtonUp(0)) StopSlice();
-        else if (slicing) ContinueSlice();
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartSlice();
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            StopSlice();
+        }
+        else if (slicing && !SliceTimerReached())
+        {
+            ContinueSlice();
+        }
+        else if (slicing && SliceTimerReached())
+        {
+            StopSlice();
+        }
     }
 
     private void StartSlice()
     {
         transform.position = GetMouseWorldPosition();
         slicing = true;
-        if (sliceCollider) sliceCollider.enabled = true;
-        if (sliceTrail) { sliceTrail.enabled = true; sliceTrail.Clear(); }
+        currentSliceTime = 0f;
+        
+        if (sliceCollider)
+        {
+            sliceCollider.enabled = true;
+        }
+
+        if (sliceTrail)
+        {
+            sliceTrail.enabled = true;
+            sliceTrail.Clear();
+        }
+    }
+
+    private bool SliceTimerReached()
+    {
+        if(currentSliceTime>sliceTimeLimit)
+        {
+            currentSliceTime = 0f;
+            return true;
+        }
+        return false;
     }
 
     private void StopSlice()
@@ -47,6 +82,7 @@ public class Slicer : MonoBehaviour
 
     private void ContinueSlice()
     {
+        currentSliceTime+= Time.deltaTime;
         var newPos = GetMouseWorldPosition();
         direction = newPos - transform.position;
         float velocity = direction.magnitude / Time.deltaTime;

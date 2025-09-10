@@ -34,7 +34,7 @@ public class Banana : MonoBehaviour
     {
         
         CMB.GameEvents.OnSlice.Invoke();
-        CMB.GameEvents.OnCurrencyGained.Invoke();
+        // CMB.GameEvents.OnCurrencyGained.Invoke();
         // Visual swap
         if (fruitCollider) fruitCollider.enabled = false;
         if (whole) whole.SetActive(false);

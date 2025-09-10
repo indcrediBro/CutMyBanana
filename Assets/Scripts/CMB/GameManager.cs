@@ -6,7 +6,7 @@ namespace CMB
 {
     public static class GameEvents
     {
-        public static Action OnSlice;                       
+        public static Action OnSlice;
         public static Action OnCurrencyGained;              
         public static Action<uint> OnExperienceGained;            
         public static Action OnTaskListChanged;
@@ -14,7 +14,7 @@ namespace CMB
         public static Action<double> OnCurrencySpent;
         public static Action<string> OnUpgradePurchased;            
         public static Action OnTierAdvanced;                        
-        public static Action<string> OnNarrativeUnlocked;           
+        // public static Action<string> OnNarrativeUnlocked;           
         public static Action<string> OnAchievementUnlocked;         
         public static Action<double> OnOfflineEarningsApplied;      
     }

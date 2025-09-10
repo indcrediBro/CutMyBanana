@@ -22,7 +22,7 @@ namespace CMB
                 return;
             }
 
-            Time.timeScale = 0;
+            // Time.timeScale = 0;
             popup.SetActive(true);
             if (title!=null) title.text = _title;
             if (message!=null) message.text = _message;

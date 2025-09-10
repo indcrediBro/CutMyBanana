@@ -21,9 +21,12 @@ namespace CMB
         private Dictionary<GameTask, TaskItemUI> taskUIBindings;
 
         [Header("Shop UI")]
+        public GameObject shopPanel;
+        public GameObject mainShopPanel, buyMenuPanel,sellMenuPanel;
         public Transform shopListContainer;
         public GameObject shopItemPrefab;
         // private Dictionary<Upgrade, ShopItemUI> shopUIBindings;
+        public Button shopButton;
         
         public void _OnAwake()
         {
@@ -51,6 +54,9 @@ namespace CMB
 
             // Custom hook when task list changes
             GameEvents.OnTaskListChanged += RefreshTaskUI;
+            
+            // Shop button opens shop panel
+            if (shopButton != null) shopButton.onClick.AddListener(ShowShopPanel);
         }
 
         public void UnsubscribeFromEvents()
@@ -60,20 +66,47 @@ namespace CMB
             GameEvents.OnExperienceGained -= UpdateExperienceDisplay;
 
             GameEvents.OnTaskListChanged -= RefreshTaskUI;
+            if (shopButton != null) shopButton.onClick.RemoveListener(ShowShopPanel);
         }
         #endregion
 
+        #region Show Panels
+
+        private void ShowShopPanel()
+        {
+            if (shopPanel != null)
+            {
+                shopPanel.SetActive(true);
+                buyMenuPanel.SetActive(false);
+                sellMenuPanel.SetActive(false);
+                mainShopPanel.SetActive(true);
+            }
+        }
+        
+        private void HideShopPanel()
+        {
+            if (shopPanel != null)
+            {
+                shopPanel.SetActive(false);
+                buyMenuPanel.SetActive(false);
+                sellMenuPanel.SetActive(false);
+                mainShopPanel.SetActive(true);
+            }
+        }
+
+        #endregion
+        
         #region Display Updates
         private void UpdateCurrencyDisplay()
         {
             if (currencyText != null)
-                currencyText.text = $"Money: {GameManager.Instance.m_playerData.currentMoney:F2}";
+                currencyText.text = $"{GameManager.Instance.m_playerData.currentMoney:F2}";
         }
 
         private void UpdateSliceCountDisplay()
         {
             if (sliceCountText != null)
-                sliceCountText.text = $"Slices: {GameManager.Instance.m_playerData.currentSliceCount}";
+                sliceCountText.text = $"{GameManager.Instance.m_playerData.currentSliceCount}";
         }
 
         private void UpdateExperienceDisplay(uint _exp)
